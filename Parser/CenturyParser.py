@@ -28,8 +28,8 @@ class CenturyParser:
                 isException = True
                 errorMsg += line
 
-    def checkEmptyLine(self, line):
-        if not line.strip():
-            return True
-        else:
-            return False
+    # def checkEmptyLine(self, line):
+    #     if not line.strip():
+    #         return True
+    #     else:
+    #         return False
