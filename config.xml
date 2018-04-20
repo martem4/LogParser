@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <logConfigs>
-    <logConfig name="orders_web">
-        <logFilePath>/var/log/century/orders_web-2.3.3/orders_web.log</logFilePath>
-        <logType>log4j</logType>
+    <logConfig name="bank">
+        <logFilePath>D:\2.txt</logFilePath>
+        <logType>century</logType>
     </logConfig>
 </logConfigs>

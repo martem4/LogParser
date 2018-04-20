@@ -1,6 +1,7 @@
 class DbConfig:
     def __init__(self):
-        self.url = ""
+        self.host = ""
         self.port = ""
         self.user = ""
         self.passw = ""
+        self.dbname = ""

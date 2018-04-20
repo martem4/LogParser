@@ -2,6 +2,7 @@ import xml.etree.cElementTree as ET
 import configparser
 from Config.DbConfig import DbConfig
 from Config.LogConfig import LogConfig
+from Parser.CenturyParser import CenturyParser
 from Parser.Log4jParser import Log4jParser
 from Parser.PgParser import PgParser
 
@@ -34,10 +35,11 @@ class LogParser:
         config = configparser.RawConfigParser()
         config.read(self.DB_CONFIG)
         self.dbConfig = DbConfig()
-        self.dbConfig.url = config.get("db", "url")
+        self.dbConfig.url = config.get("db", "host")
         self.dbConfig.port = config.get("db", "port")
         self.dbConfig.user = config.get("db", "user")
         self.dbConfig.passw = config.get("db", "passw")
+        self.dbConfig.dbname = config.get("db", "dbname")
 
     def readConfigs(self):
         self.readXmlConfig()
@@ -59,5 +61,7 @@ if __name__ == '__main__':
             parserList.append(Log4jParser(logConfig, l.dbConfig))
         elif logConfig.type == 'pg':
             parserList.append(PgParser(logConfig, l.dbConfig))
+        elif logConfig.type == 'century':
+            parserList.append(CenturyParser(logConfig, l.dbConfig))
 
-   # parserList[0].parse()
+    parserList[0].parse()
