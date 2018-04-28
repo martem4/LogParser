@@ -1,12 +1,10 @@
 import MySQLdb
 
 class LogToDb:
-    def __init__(self, dbConfig):
+    def __init__(self, dbConfig, logConfig):
         self.dbConfig = dbConfig
+        self.logConfig = logConfig
         self.db = None
-
-    #def sendLogToDb(self, dbRecord):
-
 
     @staticmethod
     def connectToDb(self):
@@ -20,4 +18,12 @@ class LogToDb:
 
     @staticmethod
     def sendLog(self, line):
-        query =
+        query = "INSERT INTO `systemevents` (`ReceivedAt`, `DeviceReportedTime`" \
+                ", `Facility`,`Priority`,	`FromHost`, `Message`, `NTSeverity`, `Importance`,`EventSource`," \
+                " `EventUser`, `EventCategory`, `EventID`,`EventBinaryData`, `MaxAvailable`, `CurrUsage`, `MinUsage`," \
+                "`MaxUsage`, `InfoUnitID`, `SysLogTag`, `EventLogType`,`GenericFileName`, `SystemID`, `processid`, " \
+                "`checksum`) VALUES (now(), now(), 9, 6, 'logserver', " \
+                "'"+ line +"', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1," \
+                " '"+ self.logConfig.name +"', NULL, NULL, NULL, '', 0);"
+
+
