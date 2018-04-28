@@ -19,11 +19,11 @@ class LogToDb:
     @staticmethod
     def sendLog(self, line):
         query = "INSERT INTO `systemevents` (`ReceivedAt`, `DeviceReportedTime`" \
-                ", `Facility`,`Priority`,	`FromHost`, `Message`, `NTSeverity`, `Importance`,`EventSource`," \
-                " `EventUser`, `EventCategory`, `EventID`,`EventBinaryData`, `MaxAvailable`, `CurrUsage`, `MinUsage`," \
-                "`MaxUsage`, `InfoUnitID`, `SysLogTag`, `EventLogType`,`GenericFileName`, `SystemID`, `processid`, " \
+                ", `Facility`,`Priority`,	`FromHost`, `Message`," \ 
+                "`InfoUnitID`, `SysLogTag`, `EventLogType`,`GenericFileName`, `SystemID`, `processid`, " \
                 "`checksum`) VALUES (now(), now(), 9, 6, 'logserver', " \
-                "'"+ line +"', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1," \
+                "'"+ line +"', 1," \
                 " '"+ self.logConfig.name +"', NULL, NULL, NULL, '', 0);"
+
 
 
