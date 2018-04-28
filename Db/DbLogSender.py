@@ -14,7 +14,6 @@ class LogToDb:
                              self.dbConfig.passw,
                              self.dbConfig.dbname
                              )
-        db.cursor()
 
     @staticmethod
     def sendLog(self, line):
@@ -22,8 +21,8 @@ class LogToDb:
                 ", `Facility`,`Priority`,	`FromHost`, `Message`," \ 
                 "`InfoUnitID`, `SysLogTag`, `EventLogType`,`GenericFileName`, `SystemID`, `processid`, " \
                 "`checksum`) VALUES (now(), now(), 9, 6, 'logserver', " \
-                "'"+ line +"', 1," \
-                " '"+ self.logConfig.name +"', NULL, NULL, NULL, '', 0);"
+                "'"+ line +"', 1,'"+ self.logConfig.name +"', NULL, NULL, NULL, '', 0);"
+
 
 
 
