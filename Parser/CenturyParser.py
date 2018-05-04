@@ -1,6 +1,5 @@
 import re
-import xml
-from xml.sax.handler import ContentHandler
+from Db.DbLogSender import DbLogSender
 from File.FileTail import FileTail
 
 
@@ -11,14 +10,17 @@ class CenturyParser:
         self.msg = ""
 
     def parse(self):
+        db = DbLogSender(self.dbConfig, self.logConfig)
+        db.connectToDb()
         tail = FileTail(self.logConfig.filePath)
         isException = False
         errorMsg = ""
         for line in tail:
             if isException:
                 if re.search('\d\d-\d\d-\d\d\d\d \d\d:\d\d:\d\d.\d\d\d *', line, re.IGNORECASE):
-                    print(errorMsg)
-                    print("-----------------------------------------------------------------------------------")
+                    #print(errorMsg)
+                    #print("-----------------------------------------------------------------------------------")
+                    db.sendLog(errorMsg)
                     isException = False
                     errorMsg = ""
                 else:
