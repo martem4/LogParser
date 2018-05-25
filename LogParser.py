@@ -64,4 +64,5 @@ if __name__ == '__main__':
         elif logConfig.type == 'century':
             parserList.append(CenturyParser(logConfig, l.dbConfig))
 
-    parserList[0].parse()
+    for parser in parserList:
+        parser

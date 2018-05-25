@@ -11,7 +11,7 @@ class CenturyParser:
 
     def parse(self):
         db = DbLogSender(self.dbConfig, self.logConfig)
-        db.connectToDb()
+        #db.connectToDb()
         tail = FileTail(self.logConfig.filePath)
         isException = False
         errorMsg = ""
@@ -20,7 +20,9 @@ class CenturyParser:
                 if re.search('\d\d-\d\d-\d\d\d\d \d\d:\d\d:\d\d.\d\d\d *', line, re.IGNORECASE):
                     #print(errorMsg)
                     #print("-----------------------------------------------------------------------------------")
+                    db.connectToDb()
                     db.sendLog(errorMsg)
+                    db.closeDb()
                     isException = False
                     errorMsg = ""
                 else:

@@ -21,11 +21,10 @@ class DbLogSender:
                 "`InfoUnitID`, `SysLogTag`, `EventLogType`,`GenericFileName`, `SystemID`, `processid`, " \
                 "`checksum`) VALUES (now(), now(), 2, 3, 'logserver', " \
                 "'" + line + "', 1,'" + self.logConfig.name + "', NULL, NULL, NULL, '', 0);"
-        print(query)
-
         if self.db is not None:
             cursor = self.db.cursor()
             cursor.execute(query)
+            self.db.commit()
 
     def closeDb(self):
         if self.db is not None:
