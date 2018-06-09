@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <logConfigs>
-    <logConfig name="bank">
+    <logConfig name="bank1">
         <logFilePath>D:\2.txt</logFilePath>
+        <logType>century</logType>
+    </logConfig>
+    <logConfig name="bank2">
+        <logFilePath>D:\3.txt</logFilePath>
         <logType>century</logType>
     </logConfig>
 </logConfigs>

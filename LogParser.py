@@ -1,5 +1,7 @@
 import xml.etree.cElementTree as ET
 import configparser
+import threading
+
 from Config.DbConfig import DbConfig
 from Config.LogConfig import LogConfig
 from Parser.CenturyParser import CenturyParser
@@ -55,14 +57,15 @@ if __name__ == '__main__':
     l.readConfigs()
 
     parserList = []
+    threadList = []
 
     for logConfig in l.get_logConfigs():
         if logConfig.type == 'log4j':
-            parserList.append(Log4jParser(logConfig, l.dbConfig))
+            threadList.append(threading.Thread(Log4jParser(logConfig, l.dbConfig).parse))
         elif logConfig.type == 'pg':
-            parserList.append(PgParser(logConfig, l.dbConfig))
+            threadList.append(threading.Thread(PgParser(logConfig, l.dbConfig).parse))
         elif logConfig.type == 'century':
-            parserList.append(CenturyParser(logConfig, l.dbConfig))
+            threadList.append(threading.Thread(CenturyParser(logConfig, l.dbConfig).parse))
 
-    for parser in parserList:
-        parser
+    for thread in threadList:
+        thread.start()

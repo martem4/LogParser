@@ -6,7 +6,7 @@ class PgParser:
         self.logConfig = logConfig
         self.dbConfig = dbConfig
 
-    def Parse(self):
+    def parse(self):
         tail = File.FileTail.FileTail(self.logConfig.filePath)
         for line in tail:
             print(line, end="")
