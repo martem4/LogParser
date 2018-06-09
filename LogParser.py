@@ -61,11 +61,11 @@ if __name__ == '__main__':
 
     for logConfig in l.get_logConfigs():
         if logConfig.type == 'log4j':
-            threadList.append(threading.Thread(Log4jParser(logConfig, l.dbConfig).parse))
+            threadList.append(threading.Thread(target=Log4jParser(logConfig, l.dbConfig).parse))
         elif logConfig.type == 'pg':
-            threadList.append(threading.Thread(PgParser(logConfig, l.dbConfig).parse))
+            threadList.append(threading.Thread(target=PgParser(logConfig, l.dbConfig).parse))
         elif logConfig.type == 'century':
-            threadList.append(threading.Thread(CenturyParser(logConfig, l.dbConfig).parse))
+            threadList.append(threading.Thread(target=CenturyParser(logConfig, l.dbConfig).parse))
 
     for thread in threadList:
         thread.start()
